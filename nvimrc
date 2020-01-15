@@ -2,6 +2,8 @@ colorscheme monokai
 set cursorline
 syntax enable
 set number
+set wrap
+set colorcolumn=80
 let g:rehash256 = 1
 filetype plugin indent on
 " show existing tab with 4 spaces width
@@ -20,3 +22,17 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>
+
+tnoremap <Esc> <C-\><C-n>
+
+call plug#begin('~/.local/share/nvim/plugged')
+
+Plug 'davidhalter/jedi-vim'
+Plug 'zchee/deoplete-jedi'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-ai
+
+" open the go-to function in split, not another buffer
+let g:jedi#use_splits_not_buffers = "right"
+
+let  g:airline_theme='minimalist'
