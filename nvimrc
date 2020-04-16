@@ -1,3 +1,5 @@
+set encoding=UTF-8
+
 set nocompatible
 
 " Turn on syntax highlighting.
@@ -21,7 +23,7 @@ set relativenumber
 set laststatus=2
 
 " The backspace key has slightly unintuitive behavior by default. For example,
-" by default, you can't backspace before the insertion point set with 'i'.
+" by default, youcan't backspace before the insertion point set with 'i'.
 " This configuration makes backspace behave more reasonably, in that you can
 " backspace over anything.
 set backspace=indent,eol,start
@@ -74,6 +76,10 @@ set expandtab
 autocmd Filetype r setlocal ts=2 sw=2 expandtab
 " for Rmd files, 2 spaces
 autocmd Filetype rmd setlocal ts=2 sw=2 expandtab
+" for html files, 2 spaces
+autocmd Filetype html setlocal ts=2 sw=2 expandtab
+" for css files, 2 spaces
+autocmd Filetype css setlocal ts=2 sw=2 expandtab
 
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -82,21 +88,82 @@ map <C-l> <C-W>
 
 tnoremap <Esc> <C-\><C-n>
 
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
+Plug 'neomake/neomake'
 Plug 'davidhalter/jedi-vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
+Plug 'terryma/vim-multiple-cursors'
 
 call plug#end()
 "
+"
+let g:deoplete#enable_at_startup = 1
 " disable autocompletion, cause we use deoplete for completion
 let g:jedi#completions_enabled = 0
-
 " open the go-to function in split, not another buffer
 let g:jedi#use_splits_not_buffers = "right"
+" change airline theme to minimal
+let g:airline_theme='minimalist'
 
-let  g:airline_theme='minimalist'
+" Copyright 2019 Google LLC
+"
+" Licensed under the Apache License, Version 2.0 (the "License");
+" you may not use this file except in compliance with the License.
+" You may obtain a copy of the License at
+"
+"    https://www.apache.org/licenses/LICENSE-2.0
+"
+" Unless required by applicable law or agreed to in writing, software
+" distributed under the License is distributed on an "AS IS" BASIS,
+" WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+" See the License for the specific language governing permissions and
+" limitations under the License.
+
+" when to activate neomake
+call neomake#configure#automake('nrw', 50)
+
+" which linter to enable for Python source file linting
+let g:neomake_python_enabled_makers = ['pylint']
+
+" Indent Python in the Google way.
+
+setlocal indentexpr=GetGooglePythonIndent(v:lnum)
+
+let s:maxoff = 50 " maximum number of lines to look backwards.
+
+function GetGooglePythonIndent(lnum)
+
+  " Indent inside parens.
+  " Align with the open paren unless it is at the end of the line.
+  " E.g.
+  "   open_paren_not_at_EOL(100,
+  "                         (200,
+  "                          300),
+  "                         400)
+  "   open_paren_at_EOL(
+  "       100, 200, 300, 400)
+  call cursor(a:lnum, 1)
+  let [par_line, par_col] = searchpairpos('(\|{\|\[', '', ')\|}\|\]', 'bW',
+        \ "line('.') < " . (a:lnum - s:maxoff) . " ? dummy :"
+        \ . " synIDattr(synID(line('.'), col('.'), 1), 'name')"
+        \ . " =~ '\\(Comment\\|String\\)$'")
+  if par_line > 0
+    call cursor(par_line, 1)
+    if par_col != col("$") - 1
+      return par_col
+    endif
+  endif
+
+  " Delegate the rest to the original function.
+  return GetPythonIndent(a:lnum)
+
+endfunction
+
+let pyindent_nested_paren="&sw*2"
+let pyindent_open_paren="&sw*2"
