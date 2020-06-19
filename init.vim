@@ -1,263 +1,110 @@
-set guicursor=
-set noshowmatch
-set nohlsearch
-set noswapfile
-set nobackup
-set undodir=~/.config/nvim/undodir
-set undofile
-set termguicolors
-set scrolloff=8
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-" Give more space for displaying messages.
-set cmdheight=2
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/mmuecke/.oh-my-zsh"
 
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=50
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="robbyrussell"
 
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-" old settings
-set encoding=UTF-8
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-set nocompatible
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
-" Turn on syntax highlighting.
-syntax enable
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
 
-" Disable the default Vim startup message.
-set shortmess+=I
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
 
-" Show line numbers.
-set number
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
 
-" This enables relative line numbering mode. With both number and
-" relativenumber enabled, the current line shows the true line number, while
-" all other lines (above and below) are numbered relative to the current line.
-" This is useful because you can tell, at a glance, what count is needed to
-" jump up or down to a particular line, by {count}k to go up or {count}j to go
-" down.
-set relativenumber
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
-" Always show the status line at the bottom, even if you only have one window open.
-set laststatus=2
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
 
-" The backspace key has slightly unintuitive behavior by default. For example,
-" by default, youcan't backspace before the insertion point set with 'i'.
-" This configuration makes backspace behave more reasonably, in that you can
-" backspace over anything.
-set backspace=indent,eol,start
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
 
-" By default, Vim doesn't let you hide a buffer (i.e. have a buffer that isn't
-" shown in any window) that has unsaved changes. This is to prevent you from "
-" forgetting about unsaved changes and then quitting e.g. via `:qa!`. We find
-" hidden buffers helpful enough to disable this protection. See `:help hidden`
-" for more information on this.
-set hidden
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-" This setting makes search case-insensitive when all characters in the string
-" being searched are lowercase. However, the search becomes case-sensitive if
-" it contains any capital letters. This makes searching more convenient.
-set ignorecase
-set smartcase
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
 
-" Enable searching as you type, rather than waiting till you press enter.
-set incsearch
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
-" Unbind some useless/annoying default key bindings.
-nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  git zsh-completions zsh-autosuggestions zsh-syntax-highlighting
+)
 
-" Disable audible bell because it's annoying.
-set noerrorbells visualbell t_vb=
+source $ZSH/oh-my-zsh.sh
 
-" Enable mouse support. You should avoid relying on this too much, but it can
-" sometimes be convenient.
-" set mouse+=a
+# User configuration
 
-" Set colorscheme
-colorscheme monokai
+# export MANPATH="/usr/local/man:$MANPATH"
 
-" Enable cursorline.
-set cursorline
-set wrap
-" Enable column line at 80 character width.
-"set colorcolumn=80
-let g:rehash256 = 1
+# You may need to manually set your language environment
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
 
-filetype plugin indent on
-" show existing tab with 4 spaces width
-set tabstop=2
-" when indenting with '>', use 4 spaces width
-set shiftwidth=2
-" On pressing tab, insert 4 spaces
-set expandtab
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='nvim'
+else
+  export EDITOR='nvim'
+fi
 
-" for python files, 2 spaces
-autocmd Filetype py setlocal ts=4 sw=4 expandtab
-" for R files, 2 spaces
-autocmd Filetype r setlocal ts=2 sw=2 expandtab
-" for Rmd files, 2 spaces
-autocmd Filetype rmd setlocal ts=2 sw=2 expandtab
-" for html files, 2 spaces
-autocmd Filetype html setlocal ts=2 sw=2 expandtab
-" for css files, 2 spaces
-autocmd Filetype css setlocal ts=2 sw=2 expandtab
-" for js files, 2 spaces
-autocmd Filetype js setlocal ts=2 sw=2 expandtab
-" for js files, 2 spaces
-autocmd Filetype vue setlocal ts=2 sw=2 expandtab
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
 
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+# ssh
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-tnoremap <Esc> <C-\><C-n>
+# iterm2 integration
+source ~/.iterm2_shell_integration.zsh
+# anaconda
+eval "$(~/anaconda3/bin/conda shell.zsh hook)"
+export PATH="/anaconda3/bin:$PATH"
+# zsh-completions
+autoload -U compinit && compinit
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-call plug#begin('~/.config/nvim/plugged')
-" file tree
-" Plug 'preservim/nerdtree'
-" git wrapper
-Plug 'tpope/vim-fugitive'
-" status bar
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-" file search
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-"
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"
-Plug 'sheerun/vim-polyglot'
-" general
-"Plug 'neomake/neomake'
-"Plug 'davidhalter/jedi-vim'
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'zchee/deoplete-jedi'
-Plug 'jiangmiao/auto-pairs'
-Plug 'terryma/vim-multiple-cursors'
-
-" snippets
-Plug 'honza/vim-snippets'
-" python
-" semantic highlighting
-" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-" indenting
-Plug 'Vimjas/vim-python-pep8-indent'
-
-call plug#end()
-
-
-"let g:deoplete#enable_at_startup = 1
-" disable autocompletion, cause we use deoplete for completion
-"let g:jedi#completions_enabled = 0
-" open the go-to function in split, not another buffer
-" let g:jedi#use_splits_not_buffers = ''"right"
-" change airline theme to minimal
-let g:airline_theme='minimalist'
-
-" when to activate neomake
-" call neomake#configure#automake('nrw', 50)
-
-" which linter to enable for Python source file linting
-" let g:neomake_python_enabled_makers = ['pylint']
-
-" --- vim go (polyglot) settings.
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_types = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_generate_tags = 1
-let g:go_highlight_format_strings = 1
-let g:go_highlight_variable_declarations = 1
-let g:go_auto_sameids = 1
-
-if executable('rg')
-    let g:rg_derive_root='true'
-endif
-
-let loaded_matchparen = 1
-let mapleader = " "
-
-let g:netrw_browse_split = 2
-let g:vrfr_rg = 'true'
-let g:netrw_banner = 0
-let g:netrw_winsize = 25
-
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
-nnoremap <leader>u :UndotreeShow<CR>
-nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
-nnoremap <Leader>ps :Rg<SPACE>
-nnoremap <C-p> :GFiles<CR>
-nnoremap <Leader>pf :Files<CR>
-nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
-nnoremap <Leader>+ :vertical resize +5<CR>
-nnoremap <Leader>- :vertical resize -5<CR>
-nnoremap <Leader>ee oif err != nil {<CR>log.Fatalf("%+v\n", err)<CR>}<CR><esc>kkI<esc>
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-
-" coc recommendeds stuff
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-inoremap <silent><expr> <TAB>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ coc#refresh()
-
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <silent><expr> <C-space> coc#refresh()
-
-" coc-explorer
-nmap <leader>e :CocCommand explorer<CR>
-autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
-
-" coc-snippets
-" Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
-" Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
-" Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-
-" GoTo code navigation.
-nmap <leader>gd <Plug>(coc-definition)
-nmap <leader>gy <Plug>(coc-type-definition)
-nmap <leader>gi <Plug>(coc-implementation)
-nmap <leader>gr <Plug>(coc-references)
-nmap <leader>rr <Plug>(coc-rename)
-nmap <leader>g[ <Plug>(coc-diagnostic-prev)
-nmap <leader>g] <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
-nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
-nnoremap <leader>cr :CocRestart
-
-" Sweet Sweet FuGITive
-nmap <leader>gh :diffget //3<CR>
-nmap <leader>gu :diffget //2<CR>
-nmap <leader>gs :G<CR>
-
-fun! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
-
-autocmd BufWritePre * :call TrimWhitespace()
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+ alias zshconfig="nvim ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vi='nvim'
