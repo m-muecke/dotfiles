@@ -1,0 +1,15 @@
+{
+  // python config
+  "python.jediEnabled": true,
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+
+  // explorer
+  "explorer.width": 30,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.previewAction.onHover": false,
+  "explorer.keyMappings": {
+    "<cr>": ["expandable?", "expand", "open"],
+    "v": "open:vsplit"
+  }
+}
