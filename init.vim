@@ -63,6 +63,7 @@ set nowrap
 "set colorcolumn=80
 let g:rehash256 = 1
 
+" spacing
 filetype plugin indent on
 " show existing tab with 4 spaces width
 set tabstop=4
@@ -71,15 +72,10 @@ set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
 
-" for java files, 4 spaces
-autocmd Filetype java setlocal ts=4 sw=4 expandtab
-" for python files, 4 spaces
-autocmd Filetype py setlocal ts=4 sw=4 expandtab
 " for R files, 2 spaces
 autocmd Filetype r setlocal ts=2 sw=2 expandtab
 " for Rmd files, 2 spaces
 autocmd Filetype rmd setlocal ts=2 sw=2 expandtab
-
 " for html files, 2 spaces
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
 " for css files, 2 spaces
