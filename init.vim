@@ -20,55 +20,42 @@ set updatetime=50
 set shortmess+=c
 " Disable audible bell because it's annoying.
 set noerrorbells visualbell t_vb=
-
 " Set encoding to UTF-8
 set encoding=UTF-8
 
 set nocompatible
-
 " Turn on syntax highlighting.
 syntax enable
-
 " Disable the default Vim startup message.
 set shortmess+=I
-
 " Show line numbers and relative line numbers.
 set nu
 set relativenumber
-
 " Always show the status line at the bottom, even if you only have one window open.
 set laststatus=2
-
 " Enable backspace everywhere, not just insert mode.
 set backspace=indent,eol,start
-
 " By default, Vim doesn't let you hide a buffer (i.e. have a buffer that isn't
 " shown in any window) that has unsaved changes. This is to prevent you from "
 " forgetting about unsaved changes and then quitting e.g. via `:qa!`. We find
 " hidden buffers helpful enough to disable this protection. See `:help hidden`
 " for more information on this.
 set hidden
-
 " This setting makes search case-insensitive when all characters in the string
 " being searched are lowercase. However, the search becomes case-sensitive if
 " it contains any capital letters. This makes searching more convenient.
 set ignorecase
 set smartcase
-
 " Enable searching as you type, rather than waiting till you press enter.
 set incsearch
 " Disable highlighting during search.
 set nohlsearch
 " Turn of automatic matching.
 set noshowmatch
-
 " Unbind some useless/annoying default key bindings.
 nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
-
-
 " Uncomment to enable mouse support.
 " set mouse+=a
-
 " Enable cursorline.
 set cursorline
 set nowrap
@@ -101,13 +88,6 @@ autocmd Filetype css setlocal ts=2 sw=2 expandtab
 autocmd Filetype js setlocal ts=2 sw=2 expandtab
 " for js files, 2 spaces
 autocmd Filetype vue setlocal ts=2 sw=2 expandtab
-
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-tnoremap <Esc> <C-\><C-n>
 
 call plug#begin('~/.config/nvim/plugged')
 "" language server
