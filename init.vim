@@ -94,6 +94,7 @@ Plug 'psf/black'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'glepnir/lspsaga.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " git wrapper
 Plug 'tpope/vim-fugitive'
 " status bar
@@ -104,17 +105,13 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
-
-Plug 'sheerun/vim-polyglot'
-Plug 'terryma/vim-multiple-cursors'
 " snippets
 Plug 'honza/vim-snippets'
-" python indenting
-Plug 'Vimjas/vim-python-pep8-indent'
 " Colorscheme
 Plug 'gruvbox-community/gruvbox'
-
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kassio/neoterm'
 call plug#end()
 
 let g:gruvbox_contrast_dark = 'hard'
@@ -130,22 +127,6 @@ set background=dark
 " change airline theme to minimal
 let g:airline_theme='minimalist'
 
-" --- vim go (polyglot) settings.
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_types = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_generate_tags = 1
-let g:go_highlight_format_strings = 1
-let g:go_highlight_variable_declarations = 1
-let g:go_auto_sameids = 1
-
 if executable('rg')
     let g:rg_derive_root='true'
 endif
@@ -158,6 +139,9 @@ let g:vrfr_rg = 'true'
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
 
+nmap <leader>gh :diffget //3<CR>
+nmap <leader>gu :diffget //2<CR>
+nmap <leader>gs :G<CR>
 nnoremap <leader>ga :Git fetch --all<CR>
 nnoremap <leader>grum :Git rebase upstream/master<CR>
 nnoremap <leader>grom :Git rebase origin/master<CR>
@@ -174,11 +158,6 @@ nnoremap <Leader>- :vertical resize -5<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-" Sweet Sweet FuGITive
-nmap <leader>gh :diffget //3<CR>
-nmap <leader>gu :diffget //2<CR>
-nmap <leader>gs :G<CR>
-
 fun! TrimWhitespace()
     let l:save = winsaveview()
     keeppatterns %s/\s\+$//e
@@ -188,7 +167,7 @@ endfun
 autocmd BufWritePre * :call TrimWhitespace()
 
 
-" Using lua functions
+" telescope mappings
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
@@ -227,16 +206,75 @@ EOF
 nmap <leader>tr :vnew term://zsh<bar>:set nonu nornu<bar>:vertical resize 80<CR>iradian<CR>
 nmap <leader>tp :vew term://zsh<bar>:set nonu nornu<bar>:vertical resize 80<CR>isource venv/bin/activate<CR>python3<CR>p
 
+" completition-nvim settings
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+" Specify matching strategy
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+
+" tree-sitter
+lua <<EOF
+require 'nvim-treesitter.configs'.setup {
+    highlight = {
+        enable = true,
+    }
+}
+EOF
+
+" nvim-lspconfig
+
+"lua << EOF
+"local nvim_lsp = require('lspconfig')
+"
+"-- Use an on_attach function to only map the following keys
+"-- after the language server attaches to the current buffer
+"local on_attach = function(client, bufnr)
+"  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+"  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+"
+"  --Enable completion triggered by <c-x><c-o>
+"  -- buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+"
+"  -- Mappings.
+"  local opts = { noremap=true, silent=true }
+"
+"  -- See `:help vim.lsp.*` for documentation on any of the below functions
+"  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+"  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opt)
+"  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+"  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+"  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+"  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+"  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+"  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+"  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+"  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+"  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+"  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+"  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+"  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+"  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+"  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+"  buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+"
+"  require'completion'.on_attach(client, bufnr)
+"end
+"
+"nvim_lsp.tsserver.setup{
+"  on_attach = on_attach
+"}
+"
+"nvim_lsp.r_language_server.setup{
+"  on_attach = on_attach
+"}
+"
+"EOF
+
 lua << EOF
 require'lspconfig'.pyright.setup{on_attach=require'completion'.on_attach}
 require'lspconfig'.r_language_server.setup{on_attach=require'completion'.on_attach}
+require'lspconfig'.tsserver.setup{on_attach=require'completion'.on_attach}
 EOF
-
-" nvim-lsp settings
-" map <c-p> to manually trigger completion
-imap <silent> <c-p> <Plug>(completion_trigger)
-" Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
-
-" Specify matching strategy
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
