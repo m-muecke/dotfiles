@@ -67,25 +67,15 @@ let g:rehash256 = 1
 
 " spacing
 filetype plugin indent on
-" show existing tab with 4 spaces width
-set tabstop=4
-" when indenting with '>', use 4 spaces width
-set shiftwidth=4
-" On pressing tab, insert 4 spaces
+" show existing tab with 2 spaces width
+set tabstop=2
+" when indenting with '>', use 2 spaces width
+set shiftwidth=2
+" On pressing tab, insert 2 spaces
 set expandtab
 
-" for R files, 2 spaces
-autocmd Filetype r setlocal ts=2 sw=2 expandtab
-" for Rmd files, 2 spaces
-autocmd Filetype rmd setlocal ts=2 sw=2 expandtab
-" for html files, 2 spaces
-autocmd Filetype html setlocal ts=2 sw=2 expandtab
-" for css files, 2 spaces
-autocmd Filetype css setlocal ts=2 sw=2 expandtab
-" for js files, 2 spaces
-autocmd Filetype js setlocal ts=2 sw=2 expandtab
-" for js files, 2 spaces
-autocmd Filetype vue setlocal ts=2 sw=2 expandtab
+" for Python files, 2 spaces
+autocmd Filetype py setlocal tabstop=4 shiftwidth=4 expandtab
 
 call plug#begin('~/.config/nvim/plugged')
 " python code formatter
@@ -111,6 +101,8 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kassio/neoterm'
+" prettier
+Plug 'sbdchd/neoformat'
 call plug#end()
 
 let g:gruvbox_contrast_dark = 'hard'
@@ -157,15 +149,6 @@ nnoremap <Leader>- :vertical resize -5<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-fun! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
-
-autocmd BufWritePre * :call TrimWhitespace()
-
-
 " telescope mappings
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
@@ -201,9 +184,6 @@ require('telescope').setup {
 
 require('telescope').load_extension('fzy_native')
 EOF
-
-nmap <leader>tr :vnew term://zsh<bar>:set nonu nornu<bar>:vertical resize 80<CR>iradian<CR>
-nmap <leader>tp :vew term://zsh<bar>:set nonu nornu<bar>:vertical resize 80<CR>isource venv/bin/activate<CR>python3<CR>p
 
 " completition-nvim settings
 " Use <Tab> and <S-Tab> to navigate through popup menu
@@ -251,9 +231,9 @@ local on_attach = function(client, bufnr)
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  -- buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  --buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
@@ -317,3 +297,23 @@ require('lualine').setup {
   extension = {'fugitive'}
 }
 EOF
+
+
+" lspsage
+lua << EOF
+local saga = require 'lspsaga'
+saga.init_lsp_saga()
+EOF
+
+nnoremap <silent> K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
+" scroll down hover doc or scroll in definition preview
+nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
+" scroll up hover doc
+nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
+" show signature help
+nnoremap <silent> <C-k> <cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>
+
+" neoformat
+let g:neoformat_enabled_python = ['black']
+let g:neoformat_enabled_javascript = ['prettier']
+let g:neoformat_enabled_r = ['styler']
