@@ -74,7 +74,7 @@ set shiftwidth=2
 " On pressing tab, insert 2 spaces
 set expandtab
 
-" for Python files, 2 spaces
+" for Python files, 4 spaces
 autocmd Filetype py setlocal tabstop=4 shiftwidth=4 expandtab
 
 call plug#begin('~/.config/nvim/plugged')
@@ -114,9 +114,6 @@ let g:gruvbox_invert_selection=0
 
 colorscheme gruvbox
 set background=dark
-
-" change airline theme to minimal
-let g:airline_theme='minimalist'
 
 if executable('rg')
     let g:rg_derive_root='true'
