@@ -7,7 +7,7 @@ set guicursor=
 set noswapfile
 set nobackup
 " Enable undofiles.
-set undodir=${HOME}/.config/nvim/undodir
+set undodir=~/.config/nvim/undodir
 set undofile
 set termguicolors
 set scrolloff=8
@@ -311,3 +311,28 @@ let g:neoformat_enabled_r = ['styler']
 
 " nvim-tree
 nnoremap <C-n> :NvimTreeToggle<CR>
+
+" neoterm
+nmap <Leader>kn :T rmarkdown::render("%")<CR>
+" Open a terminal to the right (neoterm plugin)
+nmap <Leader>t :vert rightb Tnew<CR>
+" Have Neoterm scroll to the end of its buffer after running a command
+let g:neoterm_autoscroll = 1
+
+" Send RMarkdown code chunk.
+"
+" When inside a code chunk, <Leader>cd selects the chunk and sends to neoterm.
+" Breaking this down...
+"
+" /```{<CR>                       -> search for chunk delimiter (recall <CR> is Enter)
+" N                               -> find the *previous* match to ```{
+" j                               -> move down one line from the previous match
+" V                               -> enter visual line-select mode
+" /^```\n<CR>                     -> select until the next chunk delimiter by itself on the line (which should be the end)
+" k                               -> go up one line from that match so we don't include that line
+" <Plug>(neoterm-repl-send)<CR>   -> send the selection to the neoterm terminal
+" /```{r<CR>                      -> go to the start of the next chunk
+nmap <Leader>cd /```{<CR>NjV/```\n<CR>k<Plug>(neoterm-repl-send)<CR>/```{r<CR>
+
+nmap <leader>; <Plug>(neoterm-repl-send-line)<CR>
+nmap <C-\> V}<Plug>(neoterm-repl-send)<CR>}
