@@ -1,0 +1,53 @@
+{
+    "restore_source_documents": false,
+    "save_workspace": "never",
+    "load_workspace": false,
+    "initial_working_directory": "~",
+    "show_last_dot_value": true,
+    "restore_last_project": false,
+    "continue_comments_on_newline": true,
+    "scroll_past_end_of_document": true,
+    "highlight_r_function_calls": true,
+    "strip_trailing_whitespace": true,
+    "check_arguments_to_r_function_calls": true,
+    "check_unexpected_assignment_in_function_call": true,
+    "warn_if_no_such_variable_in_scope": true,
+    "warn_variable_defined_but_not_used": true,
+    "style_diagnostics": true,
+    "show_diagnostics_other": true,
+    "editor_keybindings": "vim",
+    "syntax_color_console": true,
+    "font_size_points": 16,
+    "panes": {
+        "quadrants": [
+            "Source",
+            "TabSet1",
+            "Console",
+            "TabSet2"
+        ],
+        "tabSet1": [
+            "Environment",
+            "History",
+            "Connections",
+            "Build",
+            "VCS",
+            "Tutorial",
+            "Presentation"
+        ],
+        "tabSet2": [
+            "Files",
+            "Plots",
+            "Packages",
+            "Help",
+            "Viewer"
+        ],
+        "hiddenTabSet": [],
+        "console_left_on_top": false,
+        "console_right_on_top": true,
+        "additional_source_columns": 0
+    },
+    "posix_terminal_shell": "zsh",
+    "terminal_bell_style": "none",
+    "editor_theme": "One Dark {rsthemes}",
+    "jobs_tab_visibility": "shown"
+}

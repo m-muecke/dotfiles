@@ -76,6 +76,8 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-nvm
+  docker
+  docker-compose
 )
 
 source $ZSH/oh-my-zsh.sh
