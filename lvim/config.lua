@@ -118,6 +118,7 @@ formatters.setup {
     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
     -- filetypes = { "typescript", "typescriptreact" },
   },
+  { command = "styler", filetypes = { "r", "rmd", } },
 }
 
 -- -- set additional linters
@@ -165,7 +166,7 @@ lvim.plugins = {
   }
 }
 
-require'lspconfig'.r_language_server.setup{}
+require"lspconfig".r_language_server.setup{}
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- lvim.autocommands.custom_groups = {
