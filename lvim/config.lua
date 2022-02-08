@@ -91,8 +91,8 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- vim.list_extend(lvim.lsp.override, { "pyright" })
 
 -- ---@usage setup a server -- see: https://www.lunarvim.org/languages/#overriding-the-default-configuration
--- local opts = {} -- check the lspconfig documentation for a list of all possible options
--- require("lvim.lsp.manager").setup("pylsp", opts)
+local opts = {} -- check the lspconfig documentation for a list of all possible options
+require("lvim.lsp.manager").setup("r_language_server", opts)
 
 -- -- you can set a custom on_attach function that will be used for all the language servers
 -- -- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
@@ -107,6 +107,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
+  { command = "styler", filetypes = { "r", "rmd" }},
   { command = "black", filetypes = { "python" } },
   { command = "isort", filetypes = { "python" } },
   {
@@ -116,9 +117,8 @@ formatters.setup {
     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
     extra_args = { "--print-with", "100" },
     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-    -- filetypes = { "typescript", "typescriptreact" },
+    -- filetypes = { "javascript" },
   },
-  { command = "styler", filetypes = { "r", "rmd", } },
 }
 
 -- -- set additional linters
@@ -165,8 +165,6 @@ lvim.plugins = {
     event = "BufRead"
   }
 }
-
-require"lspconfig".r_language_server.setup{}
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- lvim.autocommands.custom_groups = {
