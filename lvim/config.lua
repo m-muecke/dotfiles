@@ -163,7 +163,14 @@ lvim.plugins = {
     "ray-x/lsp_signature.nvim",
     config = function() require"lsp_signature".on_attach() end,
     event = "BufRead"
-  }
+  },
+  {
+    "folke/todo-comments.nvim",
+    event = "BufRead",
+    config = function()
+      require("todo-comments").setup()
+    end,
+  },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
