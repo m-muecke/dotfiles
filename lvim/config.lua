@@ -107,7 +107,6 @@ require("lvim.lsp.manager").setup("r_language_server", opts)
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-  { command = "styler", filetypes = { "r", "rmd" }},
   { command = "black", filetypes = { "python" } },
   { command = "isort", filetypes = { "python" } },
   {
