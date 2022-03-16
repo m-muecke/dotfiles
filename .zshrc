@@ -76,6 +76,7 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-nvm
+  pyenv
   docker
   docker-compose
 )
