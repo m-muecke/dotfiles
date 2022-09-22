@@ -81,6 +81,7 @@ plugins=(
   pyenv
   docker
   docker-compose
+  zsh-vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -112,7 +113,7 @@ source $ZSH/oh-my-zsh.sh
 alias ls="exa -l"
 alias cat="bat"
 alias vim="lvim"
-alias radian="python -m radian"
+alias radian="python3 -m radian"
 disable r
 
 eval "$(starship init zsh)"
