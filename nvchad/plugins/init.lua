@@ -17,6 +17,7 @@ return {
         "python",
         "html",
         "css",
+        "json",
       },
     },
   },
@@ -66,4 +67,19 @@ return {
   },
   -- highlight word under cursor
   ["RRethy/vim-illuminate"] = {},
+  -- testing
+  ["nvim-neotest/neotest"] = {
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "shunsambongi/neotest-testthat",
+    },
+    config = function()
+      require("neotest").setup {
+        adapters = {
+          require("neotest-testthat"),
+        },
+      }
+    end,
+  },
 }
