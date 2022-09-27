@@ -7,7 +7,6 @@ end
 local b = null_ls.builtins
 
 local sources = {
-
   -- webdev stuff
   b.formatting.prettier.with { filetypes = { "html", "markdown", "css" } },
   -- Lua
@@ -16,6 +15,7 @@ local sources = {
   b.formatting.styler,
   -- python
   b.formatting.black,
+  b.formatting.isort,
 }
 
 null_ls.setup {

@@ -1,5 +1,3 @@
-local overrides = require "custom.plugins.overrides"
-
 return {
   -- override plugin definition options
   ["neovim/nvim-lspconfig"] = {
@@ -11,15 +9,25 @@ return {
   ["williamboman/mason.nvim"] = {
     override_options = {
       ensure_installed = {
+        -- vim
+        "vim-language-server",
         -- lua stuff
         "lua-language-server",
         "stylua",
+        -- web dev
+        "css-lsp",
+        "html-lsp",
+        "typescript-language-server",
+        "json-lsp",
+        "prettier",
         -- python
         "pyright",
         "black",
         "isort",
         -- R
         "r-languageserver",
+        -- Docker
+        "dockerfile-language-server",
       },
     },
   },

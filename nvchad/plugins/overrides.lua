@@ -4,22 +4,36 @@ M.treesitter = {
   ensure_installed = {
     "vim",
     "lua",
+    "r",
+    "markdown",
+    "python",
     "html",
     "css",
-    "tsserver",
   },
 }
 
 M.mason = {
   ensure_installed = {
+    -- vim
+    "vim-language-server",
     -- lua stuff
     "lua-language-server",
     "stylua",
-
     -- web dev stuff
     "css-lsp",
     "html-lsp",
     "typescript-language-server",
+    "prettier",
+    -- python
+    "pyright",
+    "black",
+    "isort",
+    -- R
+    "r-languageserver",
+    -- markdown
+    "markdownlint",
+    -- tex
+    "texlab",
   },
 }
 
