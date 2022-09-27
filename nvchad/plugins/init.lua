@@ -6,6 +6,20 @@ return {
       require "custom.plugins.lspconfig"
     end,
   },
+  -- treesitter
+  ["nvim-treesitter/nvim-treesitter"] = {
+    override_options = {
+      ensure_installed = {
+        "vim",
+        "lua",
+        "r",
+        "markdown",
+        "python",
+        "html",
+        "css",
+      },
+    },
+  },
   ["williamboman/mason.nvim"] = {
     override_options = {
       ensure_installed = {
@@ -20,6 +34,8 @@ return {
         "typescript-language-server",
         "json-lsp",
         "prettier",
+        -- markdown
+        "markdownlint",
         -- python
         "pyright",
         "black",
