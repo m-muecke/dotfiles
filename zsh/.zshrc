@@ -112,7 +112,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 alias ls="exa -l"
 alias cat="bat"
-alias vim="lvim"
 alias radian="python3 -m radian"
 disable r
 
