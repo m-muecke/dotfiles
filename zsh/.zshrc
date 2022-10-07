@@ -1,7 +1,7 @@
 # Fig pre block. Keep at the top of this file.
 [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.local/bin:/usr/local/opt/openjdk/bin:$PATH
+export PATH=$HOME/.local/bin:/usr/local/opt/openjdk/bin:$HOME/.cargo/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
