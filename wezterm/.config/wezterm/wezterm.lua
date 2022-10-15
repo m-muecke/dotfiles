@@ -2,7 +2,7 @@ local wezterm = require 'wezterm'
 
 return {
   color_scheme = "nightfox",
-  font_size = 17.0,
+  font_size = 17.5,
   keys = {
     { key = "v", mods = 'CMD|CTRL', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' }},
     { key = "h", mods = 'CMD|CTRL', action = wezterm.action.ActivatePaneDirection "Left" },

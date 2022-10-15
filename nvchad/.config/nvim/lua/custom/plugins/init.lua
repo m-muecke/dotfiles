@@ -20,6 +20,9 @@ return {
 				"css",
 				"json",
         "sql",
+        "javascript",
+        "typescript",
+        "tsx",
 			},
 		},
 	},
@@ -84,16 +87,6 @@ return {
 		end,
 	},
 	["folke/tokyonight.nvim"] = {},
-	["EdenEast/nightfox.nvim"] = {
-		config = function()
-			require("nightfox").setup({
-				options = {
-					styles = {
-						comments = "italic",
-					},
-				},
-			})
-		end,
-	},
+	["EdenEast/nightfox.nvim"] = {},
   ["nvim-treesitter/playground"] = {},
 }
