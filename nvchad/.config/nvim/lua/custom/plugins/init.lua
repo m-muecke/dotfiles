@@ -10,7 +10,7 @@ return {
 	["nvim-treesitter/nvim-treesitter"] = {
 		override_options = {
 			ensure_installed = {
-        "comment",
+				"comment",
 				"vim",
 				"lua",
 				"r",
@@ -19,10 +19,10 @@ return {
 				"html",
 				"css",
 				"json",
-        "sql",
-        "javascript",
-        "typescript",
-        "tsx",
+				"sql",
+				"javascript",
+				"typescript",
+				"tsx",
 			},
 		},
 	},
@@ -88,5 +88,5 @@ return {
 	},
 	["folke/tokyonight.nvim"] = {},
 	["EdenEast/nightfox.nvim"] = {},
-  ["nvim-treesitter/playground"] = {},
+	["nvim-treesitter/playground"] = {},
 }
