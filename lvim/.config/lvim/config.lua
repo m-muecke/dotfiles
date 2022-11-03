@@ -13,6 +13,14 @@ lvim.log.level = "warn"
 lvim.format_on_save = false
 lvim.colorscheme = "nightfox"
 vim.opt.relativenumber = true
+lvim.builtin.which_key.mappings["l"]["f"] = {
+  function()
+    require("lvim.lsp.utils").format { timeout_ms = 4000 }
+  end,
+  "Format",
+}
+-- Disable virtual text
+lvim.lsp.diagnostics.virtual_text = false
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -162,15 +170,51 @@ formatters.setup {
 
 -- Additional Plugins
 lvim.plugins = {
-  {
-    "EdenEast/nightfox.nvim"
-  },
+  "EdenEast/nightfox.nvim",
   {
     -- support for surround motions
     "kylechui/nvim-surround",
     config = function()
       require("nvim-surround").setup()
     end,
+  },
+  {
+    "ray-x/lsp_signature.nvim",
+    config = function() require "lsp_signature".on_attach() end,
+    event = "BufRead"
+  },
+  {
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "shunsambongi/neotest-testthat",
+    },
+    config = function()
+      require("neotest").setup({
+        adapters = {
+          require("neotest-testthat"),
+        },
+      })
+    end,
+  },
+  {
+    "karb94/neoscroll.nvim",
+    event = "WinScrolled",
+    config = function()
+      require('neoscroll').setup({
+        -- All these keys will be mapped to their corresponding default scrolling animation
+        mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>',
+          '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
+        hide_cursor = true, -- Hide cursor while scrolling
+        stop_eof = true, -- Stop at <EOF> when scrolling downwards
+        respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+        cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+        easing_function = nil, -- Default easing function
+        pre_hook = nil, -- Function to run before the scrolling animation starts
+        post_hook = nil, -- Function to run after the scrolling animation ends
+        performance_mode = false, -- Disable "Performance Mode" on all buffers.
+      })
+    end
   },
 }
 
