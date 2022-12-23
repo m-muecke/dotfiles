@@ -1,5 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.local/bin:/usr/local/opt/openjdk/bin:$HOME/.cargo/bin:$PATH
 
@@ -73,14 +71,15 @@ ZSH_THEME=""
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
-  fzf
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  zsh-nvm
-  pyenv
   docker
   docker-compose
+  fzf
+  git
+  pip
+  pyenv
+  zsh-autosuggestions
+  zsh-nvm
+  zsh-syntax-highlighting
   zsh-vi-mode
 )
 
@@ -94,11 +93,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR="vim"
+else
+  export EDITOR="lvim"
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -112,10 +111,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 alias ls="exa -l"
 alias cat="bat"
-alias radian="python3 -m radian"
 disable r
 
 eval "$(starship init zsh)"
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
