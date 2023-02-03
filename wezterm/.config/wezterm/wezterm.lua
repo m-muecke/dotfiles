@@ -1,8 +1,8 @@
 local wezterm = require("wezterm")
-
 return {
-	color_scheme = "tokyonight",
-	font_size = 18,
+	color_scheme = "nightfox",
+	font = wezterm.font("Fira Code"),
+	font_size = 17,
 	hide_tab_bar_if_only_one_tab = true,
 	keys = {
 		{ key = "m", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
