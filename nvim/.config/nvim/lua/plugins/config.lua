@@ -16,8 +16,25 @@ return {
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {},
         r_language_server = {},
+        vimls = {},
+        bashls = {},
       },
     },
+  },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    opts = function()
+      local nls = require("null-ls")
+      return {
+        sources = {
+          nls.builtins.formatting.stylua,
+          nls.builtins.formatting.shfmt,
+          nls.builtins.formatting.black,
+          nls.builtins.formatting.isort,
+          nls.builtins.diagnostics.flake8,
+        },
+      }
+    end,
   },
   {
     "williamboman/mason.nvim",
