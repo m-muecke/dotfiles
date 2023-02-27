@@ -1,8 +1,10 @@
 local wezterm = require("wezterm")
+local act = wezterm.action
+
 return {
 	color_scheme = "nightfox",
 	font = wezterm.font("Fira Code"),
-	font_size = 18,
+	font_size = 21,
 	hide_tab_bar_if_only_one_tab = true,
 	keys = {
 		{ key = "m", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
@@ -14,5 +16,8 @@ return {
 		{ key = "k", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Up") },
 		{ key = "j", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Down") },
 		{ key = "/", mods = "CMD", action = wezterm.action.ActivateCopyMode },
+		{ key = "]", mods = "CMD", action = act.ActivateTabRelative(-1) },
+		{ key = "[", mods = "CMD", action = act.ActivateTabRelative(1) },
+		{ key = ";", mods = "CMD", action = act.ActivateTabRelative(1) },
 	},
 }
