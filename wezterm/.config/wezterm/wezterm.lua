@@ -16,8 +16,8 @@ return {
 		{ key = "k", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Up") },
 		{ key = "j", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Down") },
 		{ key = "/", mods = "CMD", action = wezterm.action.ActivateCopyMode },
-		{ key = "]", mods = "CMD", action = act.ActivateTabRelative(-1) },
-		{ key = "[", mods = "CMD", action = act.ActivateTabRelative(1) },
+		{ key = "[", mods = "CMD", action = act.ActivateTabRelative(-1) },
+		{ key = "]", mods = "CMD", action = act.ActivateTabRelative(1) },
 		{ key = ";", mods = "CMD", action = act.ActivateTabRelative(1) },
 	},
 }

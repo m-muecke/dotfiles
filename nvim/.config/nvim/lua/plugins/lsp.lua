@@ -1,14 +1,5 @@
 return {
-  { "github/copilot.vim" },
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = { "jmbuhr/otter.nvim" },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      local cmp = require("cmp")
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "otter" } }))
-    end,
-  },
+  -- { "github/copilot.vim" },
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
@@ -22,8 +13,9 @@ return {
         bashls = {},
         dockerls = {},
         docker_compose_language_service = {},
+        cssls = {},
       },
-      autoformat = false,
+      autoformat = true,
       format = {
         timeout_ms = 2000,
       },
@@ -40,6 +32,7 @@ return {
           nls.builtins.formatting.black,
           nls.builtins.formatting.isort,
           nls.builtins.formatting.yamlfmt,
+          nls.builtins.formatting.xmlformat,
           nls.builtins.diagnostics.flake8,
           nls.builtins.diagnostics.shellcheck,
           nls.builtins.diagnostics.yamllint,
@@ -69,6 +62,7 @@ return {
         "bash",
         "help",
         "html",
+        "css",
         "javascript",
         "json",
         "lua",

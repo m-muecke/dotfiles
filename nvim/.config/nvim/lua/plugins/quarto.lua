@@ -3,6 +3,15 @@ if true then
 end
 return {
   {
+    "hrsh7th/nvim-cmp",
+    dependencies = { "jmbuhr/otter.nvim" },
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      local cmp = require("cmp")
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "otter" } }))
+    end,
+  },
+  {
     "quarto-dev/quarto-nvim",
     dependencies = {
       "jmbuhr/otter.nvim",
