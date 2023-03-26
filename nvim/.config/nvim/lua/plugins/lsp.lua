@@ -5,17 +5,29 @@ return {
     opts = {
       ---@type lspconfig.options
       servers = {
+        html = {},
+        cssls = {},
+        tailwindcss = {},
         pyright = {},
+        ruff_lsp = {},
         r_language_server = {},
         vimls = {},
         bashls = {},
         dockerls = {},
         docker_compose_language_service = {},
-        cssls = {},
       },
       autoformat = true,
       format = {
         timeout_ms = 10000,
+      },
+      setup = {
+        ruff_lsp = function()
+          require("lazyvim.util").on_attach(function(client, _)
+            if client.name == "ruff_lsp" then
+              client.server_capabilities.hoverProvider = false
+            end
+          end)
+        end,
       },
     },
   },
@@ -29,13 +41,9 @@ return {
           nls.builtins.formatting.shfmt,
           nls.builtins.formatting.yamlfmt,
           nls.builtins.formatting.xmlformat,
-          -- nls.builtins.diagnostics.flake8,
           nls.builtins.diagnostics.shellcheck,
-          nls.builtins.diagnostics.yamllint,
           nls.builtins.formatting.black,
-          nls.builtins.formatting.isort,
-          nls.builtins.diagnostics.ruff,
-          nls.builtins.formatting.ruff,
+          nls.builtins.formatting.isort.with({ extra_args = { "--profile=black" } }),
         },
       }
     end,
@@ -49,12 +57,8 @@ return {
         "shfmt",
         "yamlfmt",
         "yamllint",
-        "tailwindcss-language-server",
         "black",
         "isort",
-        -- "flake8",
-        "ruff",
-        -- "ruff-lsp",
       },
     },
   },
@@ -89,12 +93,4 @@ return {
     },
   },
   { "nvim-treesitter/playground" },
-  -- {
-  --   "danymat/neogen",
-  --   dependencies = "nvim-treesitter/nvim-treesitter",
-  --   -- config = function(),
-  --   -- opts = {
-  --   --   snippet_engine = "luasnip",
-  --   -- },
-  -- },
 }
