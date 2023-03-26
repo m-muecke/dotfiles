@@ -1,12 +1,10 @@
 return {
-  -- { "github/copilot.vim" },
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
     opts = {
       ---@type lspconfig.options
       servers = {
-        -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {},
         r_language_server = {},
         vimls = {},
@@ -17,7 +15,7 @@ return {
       },
       autoformat = true,
       format = {
-        timeout_ms = 2000,
+        timeout_ms = 10000,
       },
     },
   },
@@ -29,13 +27,15 @@ return {
         sources = {
           nls.builtins.formatting.stylua,
           nls.builtins.formatting.shfmt,
-          nls.builtins.formatting.black,
-          nls.builtins.formatting.isort,
           nls.builtins.formatting.yamlfmt,
           nls.builtins.formatting.xmlformat,
-          nls.builtins.diagnostics.flake8,
+          -- nls.builtins.diagnostics.flake8,
           nls.builtins.diagnostics.shellcheck,
           nls.builtins.diagnostics.yamllint,
+          nls.builtins.formatting.black,
+          nls.builtins.formatting.isort,
+          nls.builtins.diagnostics.ruff,
+          nls.builtins.formatting.ruff,
         },
       }
     end,
@@ -47,11 +47,14 @@ return {
         "stylua",
         "shellcheck",
         "shfmt",
-        "flake8",
-        "black",
-        "isort",
         "yamlfmt",
         "yamllint",
+        "tailwindcss-language-server",
+        "black",
+        "isort",
+        -- "flake8",
+        "ruff",
+        -- "ruff-lsp",
       },
     },
   },
@@ -62,6 +65,7 @@ return {
         "bash",
         "help",
         "html",
+        "htmldjango",
         "css",
         "javascript",
         "json",
@@ -84,4 +88,13 @@ return {
       },
     },
   },
+  { "nvim-treesitter/playground" },
+  -- {
+  --   "danymat/neogen",
+  --   dependencies = "nvim-treesitter/nvim-treesitter",
+  --   -- config = function(),
+  --   -- opts = {
+  --   --   snippet_engine = "luasnip",
+  --   -- },
+  -- },
 }
