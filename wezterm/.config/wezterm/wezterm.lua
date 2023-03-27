@@ -9,6 +9,8 @@ return {
 	keys = {
 		{ key = "m", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
 		{ key = "h", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
+		{ key = "w", mods = "CMD", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
+		{ key = "W", mods = "CMD", action = wezterm.action.CloseCurrentTab({ confirm = true }) },
 		{ key = "v", mods = "CMD|CTRL", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 		{ key = "s", mods = "CMD|CTRL", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
 		{ key = "h", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Left") },
@@ -19,5 +21,9 @@ return {
 		{ key = "[", mods = "CMD", action = act.ActivateTabRelative(-1) },
 		{ key = "]", mods = "CMD", action = act.ActivateTabRelative(1) },
 		{ key = ";", mods = "CMD", action = act.ActivateTabRelative(1) },
+		{ key = "H", mods = "CMD", action = act.AdjustPaneSize({ "Left", 5 }) },
+		{ key = "J", mods = "CMD", action = act.AdjustPaneSize({ "Down", 5 }) },
+		{ key = "K", mods = "CMD", action = act.AdjustPaneSize({ "Up", 5 }) },
+		{ key = "L", mods = "CMD", action = act.AdjustPaneSize({ "Right", 5 }) },
 	},
 }
