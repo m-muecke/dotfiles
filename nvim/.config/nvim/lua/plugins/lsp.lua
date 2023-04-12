@@ -16,6 +16,9 @@ return {
         tailwindcss = {},
         vimls = {},
       },
+      diagnostics = {
+        virtual_text = false,
+      },
       autoformat = true,
       format = {
         timeout_ms = 10000,
@@ -72,7 +75,7 @@ return {
         "css",
         "dockerfile",
         "gitignore",
-        "help",
+        "vimdoc",
         "html",
         "htmldjango",
         "javascript",
@@ -94,5 +97,4 @@ return {
       },
     },
   },
-  { "nvim-treesitter/playground" },
 }
