@@ -19,7 +19,7 @@ return {
       diagnostics = {
         virtual_text = false,
       },
-      autoformat = true,
+      autoformat = false,
       format = {
         timeout_ms = 10000,
       },
@@ -68,33 +68,18 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "bash",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
         "comment",
         "css",
         "dockerfile",
         "gitignore",
-        "vimdoc",
         "html",
         "htmldjango",
-        "javascript",
-        "json",
-        "lua",
-        "luadoc",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "query",
         "r",
-        "regex",
         "sql",
         "toml",
-        "tsx",
-        "typescript",
-        "vim",
-        "yaml",
-      },
-    },
+      })
+    end,
   },
 }

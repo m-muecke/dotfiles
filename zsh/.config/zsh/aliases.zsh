@@ -1,4 +1,5 @@
 alias vim="nvim"
+alias vi="nvim --clean"
 
 alias g="git"
 alias gs="git status"

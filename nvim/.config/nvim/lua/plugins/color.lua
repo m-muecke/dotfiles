@@ -1,5 +1,5 @@
 return {
-  { "EdenEast/nightfox.nvim", lazy = true },
+  { "EdenEast/nightfox.nvim", event = "VeryLazy" },
   {
     "LazyVim/LazyVim",
     opts = {
