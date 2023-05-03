@@ -15,11 +15,12 @@ return {
         ruff_lsp = {},
         tailwindcss = {},
         vimls = {},
+        texlab = {},
       },
       diagnostics = {
         virtual_text = false,
       },
-      autoformat = false,
+      autoformat = true,
       format = {
         timeout_ms = 10000,
       },
@@ -49,6 +50,9 @@ return {
           nls.builtins.formatting.stylua,
           nls.builtins.formatting.xmlformat,
           nls.builtins.formatting.yamlfmt,
+          nls.builtins.formatting.sqlfluff.with({ extra_args = { "--dialect=postgres" } }),
+          nls.builtins.diagnostics.sqlfluff.with({ extra_args = { "--dialect=postgres" } }),
+          nls.builtins.formatting.latexindent,
         },
       }
     end,
@@ -63,6 +67,7 @@ return {
         "shfmt",
         "stylua",
         "yamlfmt",
+        "sqlfluff",
       },
     },
   },
@@ -79,7 +84,9 @@ return {
         "r",
         "sql",
         "toml",
+        "latex",
       })
     end,
   },
+  { "lervag/vimtex" },
 }

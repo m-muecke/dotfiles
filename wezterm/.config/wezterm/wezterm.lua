@@ -4,7 +4,7 @@ local act = wezterm.action
 return {
 	color_scheme = "nightfox",
 	font = wezterm.font("Fira Code"),
-	font_size = 21,
+	font_size = 18,
 	hide_tab_bar_if_only_one_tab = true,
 	keys = {
 		{ key = "m", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },

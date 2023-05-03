@@ -15,6 +15,7 @@ if command -v bat &> /dev/null; then
   alias catt="bat --theme ansi"
 fi
 
+alias r="python3 -m radian"
 alias rinstall="Rscript -e 'pak::local_install()'"
 alias rbuild="Rscript -e 'devtools::build()'"
 alias rcheck="Rscript -e 'devtools::check()'"
