@@ -13,7 +13,6 @@ return {
         pyright = {},
         r_language_server = {},
         ruff_lsp = {},
-        tailwindcss = {},
         vimls = {},
         texlab = {},
       },
@@ -59,8 +58,8 @@ return {
   },
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
         "black",
         "isort",
         "shellcheck",
@@ -68,8 +67,8 @@ return {
         "stylua",
         "yamlfmt",
         "sqlfluff",
-      },
-    },
+      })
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
