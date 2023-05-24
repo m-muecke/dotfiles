@@ -16,7 +16,7 @@ if command -v bat &> /dev/null; then
 fi
 
 alias r="python3 -m radian"
-alias rinstall="Rscript -e 'pak::local_install()'"
+alias rinstall="Rscript -e 'devtools::install()'"
 alias rbuild="Rscript -e 'devtools::build()'"
 alias rcheck="Rscript -e 'devtools::check()'"
 alias rdocument="Rscript -e 'devtools::document()'"
