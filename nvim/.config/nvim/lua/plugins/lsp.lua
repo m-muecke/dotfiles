@@ -36,24 +36,22 @@ return {
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
-    opts = function()
+    opts = function(_, opts)
       local nls = require("null-ls")
-      return {
-        sources = {
-          nls.builtins.diagnostics.dotenv_linter,
-          nls.builtins.diagnostics.hadolint,
-          nls.builtins.diagnostics.shellcheck,
-          nls.builtins.formatting.black,
-          nls.builtins.formatting.isort.with({ extra_args = { "--profile=black" } }),
-          nls.builtins.formatting.shfmt,
-          nls.builtins.formatting.stylua,
-          nls.builtins.formatting.xmlformat,
-          nls.builtins.formatting.yamlfmt,
-          nls.builtins.formatting.sqlfluff.with({ extra_args = { "--dialect=postgres" } }),
-          nls.builtins.diagnostics.sqlfluff.with({ extra_args = { "--dialect=postgres" } }),
-          nls.builtins.formatting.latexindent,
-        },
-      }
+      vim.list_extend(opts.sources, {
+        nls.builtins.diagnostics.dotenv_linter,
+        nls.builtins.diagnostics.hadolint,
+        nls.builtins.diagnostics.shellcheck,
+        nls.builtins.formatting.black,
+        nls.builtins.formatting.isort.with({ extra_args = { "--profile=black" } }),
+        nls.builtins.formatting.shfmt,
+        nls.builtins.formatting.stylua,
+        nls.builtins.formatting.xmlformat,
+        nls.builtins.formatting.yamlfmt,
+        nls.builtins.formatting.sqlfluff.with({ extra_args = { "--dialect=postgres" } }),
+        nls.builtins.diagnostics.sqlfluff.with({ extra_args = { "--dialect=postgres" } }),
+        nls.builtins.formatting.latexindent,
+      })
     end,
   },
   {
