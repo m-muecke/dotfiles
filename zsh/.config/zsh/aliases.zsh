@@ -1,24 +1,15 @@
 alias vim="nvim"
 alias vi="nvim --clean"
 
-alias g="git"
-alias gs="git status"
-alias ga="git add"
-alias gd="git diff"
-alias gc="git commit"
-alias gcm="git commit -m"
-alias gp="git push"
-alias gl="git pull"
-
 if command -v bat &> /dev/null; then
   alias cat="bat -pp --theme ansi"
   alias catt="bat --theme ansi"
 fi
 
 alias r="python3 -m radian"
-alias rinstall="Rscript -e 'devtools::install()'"
-alias rbuild="Rscript -e 'devtools::build()'"
-alias rcheck="Rscript -e 'devtools::check()'"
-alias rdocument="Rscript -e 'devtools::document()'"
-alias rmd="Rscript -e 'devtools::build_readme()'"
-alias rstyle="Rscript -e 'styler::style_pkg()'"
+alias ri="Rscript -e 'devtools::install()'"
+alias rb="Rscript -e 'devtools::build()'"
+alias rc="Rscript -e 'devtools::check()'"
+alias rd="Rscript -e 'devtools::document()'"
+alias rr="Rscript -e 'devtools::build_readme()'"
+alias rs="Rscript -e 'styler::style_pkg()'"

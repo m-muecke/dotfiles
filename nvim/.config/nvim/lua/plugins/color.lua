@@ -1,13 +1,21 @@
 return {
-  { "EdenEast/nightfox.nvim", event = "VeryLazy" },
+  {
+    "EdenEast/nightfox.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("nightfox").setup({
+        options = {},
+      })
+    end,
+  },
   {
     "folke/tokyonight.nvim",
-    opts = { style = "moon" },
+    opts = { transparent = true, style = "storm" },
   },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "nightfox",
+      colorscheme = "tokyonight",
     },
   },
 }

@@ -2,10 +2,17 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 
 return {
-	color_scheme = "nightfox",
-	font = wezterm.font("Fira Code"),
-	font_size = 18,
+	color_scheme = "Tokyo Night Storm",
+	font = wezterm.font("JetBrains Mono"),
+	font_size = 20,
 	hide_tab_bar_if_only_one_tab = true,
+	show_tab_index_in_tab_bar = true,
+	use_fancy_tab_bar = false,
+	tab_bar_at_bottom = true,
+	bold_brightens_ansi_colors = true,
+	window_background_opacity = 1.0,
+	window_decorations = "RESIZE",
+	inactive_pane_hsb = { saturation = 1.0, brightness = 1.0 },
 	keys = {
 		{ key = "m", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
 		{ key = "h", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
