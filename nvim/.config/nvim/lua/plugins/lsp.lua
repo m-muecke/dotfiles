@@ -11,32 +11,10 @@ return {
         vimls = {},
         texlab = {},
       },
-      diagnostics = {
-        virtual_text = true,
-      },
-      autoformat = true,
       format = {
         timeout_ms = 100000,
       },
     },
-  },
-  {
-    "nvimtools/none-ls.nvim",
-    opts = function(_, opts)
-      local nls = require("null-ls")
-      vim.list_extend(opts.sources, {
-        nls.builtins.diagnostics.shellcheck,
-        nls.builtins.diagnostics.sqlfluff.with({ extra_args = { "--dialect=postgres" } }),
-        nls.builtins.formatting.black,
-        nls.builtins.formatting.isort.with({ extra_args = { "--profile=black" } }),
-        nls.builtins.formatting.latexindent,
-        nls.builtins.formatting.shfmt,
-        nls.builtins.formatting.sqlfluff.with({ extra_args = { "--dialect=postgres" } }),
-        nls.builtins.formatting.stylua,
-        nls.builtins.formatting.xmlformat,
-        nls.builtins.formatting.yamlfmt,
-      })
-    end,
   },
   {
     "williamboman/mason.nvim",
@@ -44,8 +22,9 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "black",
         "isort",
+        "latexindent",
         "shellcheck",
-        "yamlfmt",
+        "sqlfluff",
       })
     end,
   },
@@ -58,13 +37,29 @@ return {
           "css",
           "gitignore",
           "htmldjango",
-          "latex",
           "sql",
           "xml",
         })
       end
     end,
   },
+  {
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        ["python"] = { "isort", "black" },
+        ["latex"] = { "latexindent" },
+        ["xml"] = { "xmlformat" },
+      },
+    },
+  },
+  {
+    "mfussenegger/nvim-lint",
+    optional = true,
+    opts = {
+      linters_by_ft = {},
+    },
+  },
   { "github/copilot.vim" },
-  { "nvim-treesitter/playground" },
 }

@@ -2,6 +2,7 @@ return {
   "danymat/neogen",
   dependencies = "nvim-treesitter/nvim-treesitter",
   opts = {
+    snippet_engine = "luasnip",
     languages = {
       python = {
         template = {
@@ -9,6 +10,5 @@ return {
         },
       },
     },
-    snippet_engine = "luasnip",
   },
 }

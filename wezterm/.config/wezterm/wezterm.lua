@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 
 return {
-	color_scheme = "Tokyo Night Storm",
+	color_scheme = "Catppuccin Macchiato",
 	font = wezterm.font("JetBrains Mono"),
 	font_size = 20,
 	hide_tab_bar_if_only_one_tab = true,

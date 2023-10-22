@@ -17,6 +17,7 @@ return {
               or require("lspconfig.util").find_git_ancestor(fname)
               or vim.loop.os_homedir()
           end,
+          flags = { debounce_text_changes = 150 },
         },
       },
     },
