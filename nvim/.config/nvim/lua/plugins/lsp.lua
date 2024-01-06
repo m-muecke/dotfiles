@@ -10,6 +10,7 @@ return {
         html = {},
         vimls = {},
         texlab = {},
+        sqlls = {},
       },
       format = {
         timeout_ms = 100000,
@@ -25,6 +26,7 @@ return {
         "latexindent",
         "shellcheck",
         "sqlfluff",
+        "sqlfmt",
       })
     end,
   },
@@ -51,6 +53,7 @@ return {
         ["python"] = { "isort", "black" },
         ["latex"] = { "latexindent" },
         ["xml"] = { "xmlformat" },
+        ["sql"] = { "sql-formatter" },
       },
     },
   },

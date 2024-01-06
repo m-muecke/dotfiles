@@ -15,11 +15,11 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    lazy = true,
     opts = {
       flavour = "macchiato",
     },
   },
+  { "rose-pine/neovim", name = "rose-pine", opts = { variant = "moon" } },
   {
     "LazyVim/LazyVim",
     opts = {

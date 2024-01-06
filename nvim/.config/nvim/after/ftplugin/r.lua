@@ -4,7 +4,6 @@ vim.opt_local.colorcolumn = "89"
 -- Keybindings
 vim.api.nvim_buf_set_keymap(0, "i", "<M-i>", " <- ", { noremap = true })
 vim.api.nvim_buf_set_keymap(0, "i", "<M-p>", " |>", { noremap = true })
-
 -- Indentation
 -- Don't align indentation of function args on new line with opening `(`
 vim.g.r_indent_align_args = 0

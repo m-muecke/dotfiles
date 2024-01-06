@@ -1,1 +1,4 @@
-options(radian.editing_mode = "vi")
+options(
+  radian.editing_mode = "vim",
+  radian.tab_size = 2
+)

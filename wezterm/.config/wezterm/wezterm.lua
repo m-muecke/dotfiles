@@ -4,7 +4,7 @@ local act = wezterm.action
 return {
 	color_scheme = "Catppuccin Macchiato",
 	font = wezterm.font("JetBrains Mono"),
-	font_size = 20,
+	font_size = 18,
 	hide_tab_bar_if_only_one_tab = true,
 	show_tab_index_in_tab_bar = true,
 	use_fancy_tab_bar = false,
