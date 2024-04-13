@@ -11,9 +11,26 @@ return {
         vimls = {},
         texlab = {},
         sqlls = {},
+        typst_lsp = {},
+        lua_ls = { settings = { Lua = { hint = { enable = true } } } },
+        tsserver = {
+          settings = {
+            typescript = {
+              inlayHints = {
+                includeInlayEnumMemberValueHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayParameterNameHints = "all",
+              },
+            },
+          },
+        },
       },
       format = {
         timeout_ms = 100000,
+      },
+      inlay_hints = {
+        enabled = false,
       },
     },
   },
@@ -41,6 +58,7 @@ return {
           "htmldjango",
           "sql",
           "xml",
+          "typst",
         })
       end
     end,
@@ -50,10 +68,21 @@ return {
     optional = true,
     opts = {
       formatters_by_ft = {
-        ["python"] = { "isort", "black" },
-        ["latex"] = { "latexindent" },
-        ["xml"] = { "xmlformat" },
-        ["sql"] = { "sql-formatter" },
+        python = { "isort", "black" },
+        latex = { "latexindent" },
+        xml = { "xmlformat" },
+        sql = { "sqlfmt" },
+        r = { "my_styler" },
+        typ = { "typstfmt" },
+      },
+      formatters = {
+        my_styler = {
+          command = "R",
+          -- A list of strings, or a function that returns a list of strings
+          -- Return a single string instead of a list to run the command in a shell
+          args = { "-s", "-e", "styler::style_file(commandArgs(TRUE)[1])", "--args", "$FILENAME" },
+          stdin = false,
+        },
       },
     },
   },
@@ -61,8 +90,9 @@ return {
     "mfussenegger/nvim-lint",
     optional = true,
     opts = {
-      linters_by_ft = {},
+      linters_by_ft = {
+        sql = { "sqlfluff" },
+      },
     },
   },
-  { "github/copilot.vim" },
 }

@@ -3,9 +3,9 @@
 -- Add any additional keymaps here
 
 -- copilot
-vim.cmd('imap <silent><script><expr> <C-J> copilot#Accept("<CR>")')
--- vim.keymap.set("i", "<C-j>", "copilot#Accep('<CR>')", { expr = true, silent = true })
-vim.cmd("let g:copilot_no_tab_map = v:true")
+-- vim.cmd('imap <silent><script><expr> <C-J> copilot#Accept("<CR>")')
+-- -- vim.keymap.set("i", "<C-j>", "copilot#Accep('<CR>')", { expr = true, silent = true })
+-- vim.cmd("let g:copilot_no_tab_map = v:true")
 
 -- better line movement
 vim.keymap.set({ "n", "v" }, "gh", "0", { desc = "Move to the start of the line" })

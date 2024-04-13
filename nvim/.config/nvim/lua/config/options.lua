@@ -61,3 +61,7 @@ vim.g.neoterm_autoscroll = 1
 if vim.fn.executable("zsh") == 1 then
   vim.g.neoterm_shell = "zsh"
 end
+
+if vim.g.neovide then
+  vim.g.neovide_cursor_vfx_mode = ""
+end
