@@ -13,6 +13,7 @@ return {
         sqlls = {},
         typst_lsp = {},
         lua_ls = { settings = { Lua = { hint = { enable = true } } } },
+        biome = {},
         tsserver = {
           settings = {
             typescript = {
@@ -25,6 +26,16 @@ return {
             },
           },
         },
+      },
+      setup = {
+        biome = function()
+          LazyVim.lsp.on_attach(function(client, _)
+            if client.name == "tsserver" then
+              -- Disable format of tsserver
+              client.server_capabilities.documentFormattingProvider = false
+            end
+          end)
+        end,
       },
       format = {
         timeout_ms = 100000,
@@ -68,6 +79,7 @@ return {
     optional = true,
     opts = {
       formatters_by_ft = {
+        typescript = { "biome-check" },
         python = { "isort", "black" },
         latex = { "latexindent" },
         xml = { "xmlformat" },
