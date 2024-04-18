@@ -1,1 +1,1 @@
-return {"kassio/neoterm"}
+return { "kassio/neoterm" }
