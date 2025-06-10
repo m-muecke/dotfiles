@@ -2,8 +2,8 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 
 return {
-	color_scheme = "nightfox",
-	font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Regular"}),
+  color_scheme = "Catppuccin Macchiato",
+	font = wezterm.font("JetBrainsMonoNL Nerd Font Mono", { weight = "Regular"}),
 	font_size = 19,
 	hide_tab_bar_if_only_one_tab = true,
 	show_tab_index_in_tab_bar = true,
